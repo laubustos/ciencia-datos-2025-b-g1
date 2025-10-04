@@ -1,0 +1,83 @@
+Scrip - MySQL "EduSmart"
+CREATE DATABASE EduSmart;
+Use EduSmart;
+CREATE TABLE estudiantes (
+  id_estudiante INT PRIMARY KEY,
+  nombre VARCHAR(100),
+  email VARCHAR(100)
+);
+
+CREATE TABLE cursos (
+  id_curso INT PRIMARY KEY,
+  nombre VARCHAR(100),
+  costo DECIMAL(10,2),
+  duracion_semanas INT
+);
+
+CREATE TABLE matriculas (
+  id_matricula INT PRIMARY KEY,
+  id_estudiante INT,
+  id_curso INT,
+  fecha DATE,
+  FOREIGN KEY (id_estudiante) REFERENCES estudiantes(id_estudiante),
+  FOREIGN KEY (id_curso) REFERENCES cursos(id_curso)
+);
+
+_______________________________________________________________________________________
+
+TABLA DE DESTINO (DESPUÉS DEL ETL)
+
+
+CREATE TABLE matriculas_limpias (
+  id_matricula INT,
+  id_estudiante INT,
+  nombre_estudiante VARCHAR(100),
+  email VARCHAR(100),
+  id_curso INT,
+  nombre_curso VARCHAR(100),
+  costo DECIMAL(10,2),
+  duracion_semanas INT,
+  fecha DATE,
+  costo_total DECIMAL(10,2)
+);
+
+ INSERCIONES DE EJEMPLO
+
+Estudiantes
+INSERT INTO estudiantes VALUES (1, 'Maria Gomez', 'mariagomez@gmail.com');
+INSERT INTO estudiantes VALUES (2, 'Luis Torres', 'luistorres@gmail.com');
+INSERT INTO estudiantes VALUES (3, 'Camila Diaz', 'camila.diaz@hotmail.com');
+
+Cursos
+INSERT INTO cursos VALUES (201, 'Python Básico', 200.00, 6);
+INSERT INTO cursos VALUES (202, 'Ciencia de Datos', 350.00, 8);
+INSERT INTO cursos VALUES (203, 'Machine Learning', 500.00, 10);
+
+Matrículas
+INSERT INTO matriculas VALUES (1, 1, 201, '2024-01-05');
+INSERT INTO matriculas VALUES (2, 2, 202, '2024-02-15');
+INSERT INTO matriculas VALUES (3, 3, 203, '2024-03-15');
+
+
+INSERCIONES EN TABLA FINAL (RESULTADO ETL)
+
+
+INSERT INTO matriculas_limpias VALUES 
+(1, 1, 'MARIA GOMEZ', 'mariagomez@gmail.com', 201, 'Python Básico', 200.00, 6, '2024-01-05', 1200.00);
+
+INSERT INTO matriculas_limpias VALUES 
+(2, 2, 'LUIS TORRES', 'luistorres@gmail.com', 202, 'Ciencia de Datos', 350.00, 8, '2024-02-15', 2800.00);
+
+INSERT INTO matriculas_limpias VALUES 
+(3, 3, 'CAMILA DIAZ', 'camila.diaz@hotmail.com', 203, 'Machine Learning', 500.00, 10, '2024-03-15', 5000.00);
+
+ CONSULTA DE EJEMPLO 
+
+
+SELECT 
+  id_matricula,
+  nombre_estudiante,
+  nombre_curso,
+  fecha,
+  costo_total
+FROM matriculas_limpias;

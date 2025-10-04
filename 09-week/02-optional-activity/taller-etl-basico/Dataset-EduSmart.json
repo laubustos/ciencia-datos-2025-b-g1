@@ -1,0 +1,19 @@
+{
+"estudiantes": [
+    {"id_estudiante": 1, "nombre": "Maria Gomez", "email": "mariagomez@gmail.com"},
+    {"id_estudiante": 2, "nombre": "Luis Torres", "email": "luistorres@gmail.com"},
+    {"id_estudiante": 3, "nombre": "Camila Diaz", "email": "camila.diaz@hotmail.com"},
+    {"id_estudiante": 2, "nombre": "Luis Torres", "email": "luistorres@gmail.com"},
+    {"id_estudiante": 4, "nombre": null, "email": "andrea.rios@gmail.com"}
+],
+"cursos": [
+    {"id_curso": 201, "nombre": "Python Básico", "costo": 200.00, "duracion_semanas": 6},
+    {"id_curso": 202, "nombre": "Ciencia de Datos", "costo": 350.00, "duracion_semanas": 8},
+    {"id_curso": 203, "nombre": "Machine Learning", "costo": 500.00, "duracion_semanas": 10}
+],
+"matriculas": [
+    {"id_matricula": 1, "id_estudiante": 1, "id_curso": 201, "fecha": "2024-01-05"},
+    {"id_matricula": 2, "id_estudiante": 2, "id_curso": 202, "fecha": "2024/02/15"},
+    {"id_matricula": 3, "id_estudiante": 3, "id_curso": 203, "fecha": "15-03-2024"}
+]
+}
